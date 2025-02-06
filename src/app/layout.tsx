@@ -13,14 +13,27 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="ko">
-        <body>
-        <header style={{ padding: "20px", background: "#f4f4f4" }}>
-            <h1>Caregivers App</h1>
+        <html lang="ko" className="h-full">
+        <body className="min-h-screen flex flex-col bg-gray-100 font-sans">
+        {/* Header */}
+        <header className="bg-white shadow-md py-3 px-4 sticky top-0 z-10">
+            <div className="max-w-md mx-auto flex justify-between items-center">
+                <h1 className="text-xl font-bold text-gray-800">
+                    Caregivers App
+                </h1>
+            </div>
         </header>
-        <main>{children}</main>
-        <footer style={{ padding: "20px", background: "#f4f4f4", marginTop: "20px" }}>
-            <p>© 2023 Caregivers App</p>
+
+        {/* Main Content */}
+        <main className="flex-grow max-w-md mx-auto w-full py-4 px-4">
+            {children}
+        </main>
+
+        {/* Footer */}
+        <footer className="bg-gray-200 py-3 px-4 text-center">
+            <p className="text-sm text-gray-600">
+                © {new Date().getFullYear()} Caregivers App
+            </p>
         </footer>
         </body>
         </html>
