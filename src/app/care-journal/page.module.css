@@ -1,0 +1,73 @@
+/* 화면 전체를 컨트롤하는 외부 컨테이너 */
+.outerContainer {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    height: 100vh; /* 전체 화면 높이 */
+    background-color: #f5f5f5; /* 배경색 지정 */
+}
+
+/* 화면의 고정된 너비와 비율을 설정하는 내부 컨테이너 */
+.innerContainer {
+    aspect-ratio: 9 / 16; /* 고정 비율(9:16) */
+    width: 100%; /* 초기 너비를 100%로 설정 */
+    max-width: 400px; /* 최대 너비 제한 (스마트폰처럼) */
+    background-color: white; /* 내부 컨테이너 배경 */
+    display: flex;
+    flex-direction: column; /* 세로(수직) 레이아웃 */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    border-radius: 12px; /* 모서리를 약간 둥글게 */
+}
+.title {
+    display: flex;
+    justify-content: center;
+}
+
+.mobile-container {
+    max-width: 320px; /* 모바일 화면 크기 */
+    margin: 0 auto;
+    height: 100vh; /* 화면 전체 높이 */
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    border: 1px solid #ddd; /* 테두리 추가 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.header {
+    display: flex;
+    background-color: white;
+    justify-content: space-between; /*양쪽으로 퍼지도록 설정*/
+    align-items: center; /* 중앙 세로 정렬 */
+    color: black;
+    text-align: center;
+    padding: 16px;
+    font-size: 18px;
+}
+
+.main {
+    flex-grow: 1;
+    padding: 16px;
+    font-size: 14px;
+}
+
+.footer {
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 8px;
+    font-size: 12px;
+    color: #888;
+}
+/* todo 헤더 안 버튼 */
+.button {
+    justify-content: center; /*가로 중앙 정렬*/
+    align-items: center; /* 세로 중앙 정렬*/
+    width: 50px; /* 버튼의 너비 */
+    height: 50px; /* 버튼의 높이 (너비와 같게 설정) */
+    display: flex; /* 내부 아이템을 가운데 정렬하기 위해 Flexbox 활성화 */
+    background-color: white; /* 버튼 배경색 */
+    color: black; /* 버튼 텍스트 색상 */
+    border: 1px solid black; /* 테두리 */
+    border-radius: 4px; /* 버튼 모서리 둥글게 (선택) */
+    cursor: pointer; /* 클릭 가능한 스타일 */
+    transition: background-color 0.2s ease-in-out; /* 호버 시 배경색 전환 효과 */
+}
