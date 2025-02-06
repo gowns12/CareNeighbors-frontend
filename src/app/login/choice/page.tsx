@@ -28,7 +28,9 @@ const LoginScreen: React.FC = () => {
                 <button className="w-full py-3 bg-black text-white font-bold rounded-lg">
                     애플로 시작하기
                 </button>
-                <button className="w-full py-3 bg-gray-300 text-black font-bold rounded-lg">
+                <button
+                    className="w-full py-3 bg-gray-300 text-black font-bold rounded-lg"
+                    onClick={() => router.push('/join/phone-number')}>
                     전화번호로 시작하기
                 </button>
             </div>
