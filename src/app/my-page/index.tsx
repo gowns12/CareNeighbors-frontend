@@ -25,7 +25,7 @@ const MyPage: NextPage = () => {
     return (
         <Container>
             <Header>
-                <Title>마이</Title>
+                <Title>MY PAGE</Title>
                 <SettingButton>설정</SettingButton>
             </Header>
 

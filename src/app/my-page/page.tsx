@@ -19,7 +19,7 @@ export default function MyPageScreen() {
             {/* Header */}
             <header className="bg-white shadow-md py-4">
                 <div className="container mx-auto px-4 flex justify-between items-center">
-                    <h1 className="text-2xl font-bold">마이</h1>
+                    <h1 className="text-2xl font-bold">MY PAGE</h1>
                     <button className="px-4 py-2 text-sm">설정</button>
                 </div>
             </header>
@@ -89,12 +89,22 @@ export default function MyPageScreen() {
 
                 {/* Bottom Navigation */}
                 <nav className="fixed bottom-0 left-0 right-0 bg-white border-t">
-                    <div className="grid grid-cols-5 gap-2 p-2">
-                        <button className="text-center">홈</button>
-                        <button className="text-center">커뮤니티</button>
-                        <button className="text-center">간병일지</button>
-                        <button className="text-center">폴짓</button>
-                        <button className="text-center">마이</button>
+                    <div className="grid grid-cols-5 gap-1 p-3">
+                        <button className="flex flex-col items-center justify-center h-16 text-sm">
+                            홈
+                        </button>
+                        <button className="flex flex-col items-center justify-center h-16 text-sm">
+                            커뮤니티
+                        </button>
+                        <button className="flex flex-col items-center justify-center h-16 text-sm">
+                            간병일지
+                        </button>
+                        <button className="flex flex-col items-center justify-center h-16 text-sm">
+                            폴짓
+                        </button>
+                        <button className="flex flex-col items-center justify-center h-16 text-sm">
+                            마이
+                        </button>
                     </div>
                 </nav>
             </main>
