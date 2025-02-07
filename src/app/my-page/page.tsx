@@ -43,7 +43,7 @@ const MyPageMain = () => {
                 <Section>
                     <SectionTitle>금융</SectionTitle>
                     <ButtonRow>
-                        <StyledButton onClick={() => router.push("/my-page/accounts")}>
+                        <StyledButton onClick={() => router.push("/my-page/appAccount")}>
                             앱 통장
                         </StyledButton>
                         <StyledButton onClick={() => router.push("/my-page/remittance")}>
