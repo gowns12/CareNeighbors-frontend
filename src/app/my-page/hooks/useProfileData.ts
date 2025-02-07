@@ -3,6 +3,9 @@ import { getProfile } from "../services/profileService";
 
 export interface ProfileData {
     name: string;
+    gender: string;
+    organization: string;
+    location: string;
     email: string;
     phone: string;
     image?: string; // 선택적 이미지 필드

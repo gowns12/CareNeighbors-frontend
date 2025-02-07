@@ -20,7 +20,7 @@ export default function RootLayout({
                 {/* 로고 영역 */}
                 <div className="flex-shrink-0">
                     <img
-                        src="/images/CareNeighbors.png"
+                        src="/images/CareNeighbors.PNG"
                         alt="CareNeighbors"
                         className="h-12 w-24" // 높이를 8로 조정하고 너비는 자동으로 비율 유지
                     />

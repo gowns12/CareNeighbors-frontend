@@ -27,8 +27,13 @@ const MyPageMain = () => {
                         <img src={profile.image || "/images/default-profile.jpg"} alt="프로필" />
                     </ProfileImageWrapper>
                     <ProfileInfo>
-                        <Name>{profile.name}</Name>
+                        {/* 이름과 성별을 한 줄로 배치 */}
+                        <div className="flex items-center">
+                            <Name className="mr-1">{profile.name}</Name>
+                            <Gender className="text-gray-500">({profile.gender})</Gender>
+                        </div>
                         <Phone>{profile.phone}</Phone>
+                        <Organization>{profile.organization}</Organization>
                         <Email>{profile.email}</Email>
                         {/* 주소 추가 */}
                         <Address>{profile.address}</Address>
@@ -148,6 +153,17 @@ const ProfileInfo = styled.div`
 const Name = styled.span`
     font-size: 16px;
     font-weight: bold;
+`;
+
+const Gender = styled.span`
+    font-size: 15px;
+    font-weight: bold;
+    color: #666;
+`;
+
+const Organization = styled.span`
+    font-size: 14px;
+    color: #666;
 `;
 
 const Phone = styled.span`
