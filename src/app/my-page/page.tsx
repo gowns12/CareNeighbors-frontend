@@ -4,7 +4,6 @@ import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/navigation";
 import useProfileData from "../my-page/hooks/useProfileData";
-import Header from "../my-page/components/Header";
 import FooterNav from "../my-page/components/FooterNav";
 
 const MyPageMain = () => {
@@ -31,6 +30,8 @@ const MyPageMain = () => {
                         <Name>{profile.name}</Name>
                         <Phone>{profile.phone}</Phone>
                         <Email>{profile.email}</Email>
+                        {/* 주소 추가 */}
+                        <Address>{profile.address}</Address>
                     </ProfileInfo>
                 </ProfileSection>
 
@@ -76,11 +77,12 @@ const MyPageMain = () => {
                 </Section>
 
                 <TabBar>
-                    <Tab>홈</Tab>
+                    {/* isActive를 DOM에 전달하지 않고 스타일링에 활용 */}
+                    <Tab $active>홈</Tab>
                     <Tab>커뮤니티</Tab>
                     <Tab>간병일지</Tab>
                     <Tab>쪽지,선물</Tab>
-                    <Tab isActive>마이</Tab>
+                    <Tab $active>마이</Tab>
                 </TabBar>
             </MainContent>
             <FooterNav />
@@ -223,10 +225,10 @@ const TabBar = styled.div`
     border-top: 1px solid #eee;
 `;
 
-const Tab = styled.button<{ isActive?: boolean }>`
+const Tab = styled.button<{ $active?: boolean }>`
     padding: 8px;
     border: none;
-    background: ${props => props.isActive ? '#f0f0f0' : 'white'};
+    background: ${({ $active }) => ($active ? '#f0f0f0' : 'white')};
     font-size: 12px;
     cursor: pointer;
 

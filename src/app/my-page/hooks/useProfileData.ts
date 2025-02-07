@@ -6,6 +6,7 @@ export interface ProfileData {
     email: string;
     phone: string;
     image?: string; // 선택적 이미지 필드
+    address : string;
 }
 
 const useProfileData = () => {
