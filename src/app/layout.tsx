@@ -16,10 +16,23 @@ export default function RootLayout({
         <body className="min-h-screen flex flex-col bg-gray-50 h-full">
         {/* Header */}
         <header className="bg-white shadow-md py-3 px-4 sticky top-0 z-10">
-            <div className="max-w-md mx-auto flex justify-between items-center">
-                <h1 className="text-xl font-bold text-gray-800">
+            <div className="max-w-md mx-auto flex items-center justify-between">
+                {/* 로고 영역 */}
+                <div className="flex-shrink-0">
+                    <img
+                        src="/images/CareNeighbors.png"
+                        alt="CareNeighbors"
+                        className="h-12 w-24" // 높이를 8로 조정하고 너비는 자동으로 비율 유지
+                    />
+                </div>
+
+                {/* 중앙으로 이동한 제목 영역 */}
+                <h1 className="text-xl font-bold text-gray-800 mx-auto">
                     Caregivers App
                 </h1>
+
+                {/* 오른쪽 빈 공간 (선택사항: 필요 시 추가 버튼이나 동작을 넣을 수 있음) */}
+                <div className="flex-shrink-0"></div>
             </div>
         </header>
 
