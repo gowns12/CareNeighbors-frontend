@@ -18,7 +18,7 @@ const MyPageMain = () => {
         <Container>
             <HeaderWrapper>
                 <Title>MY PAGE</Title>
-                <SettingButton>설정</SettingButton>
+                <SettingButton onClick={() => router.push("/my-page/settings")}>설정</SettingButton>
             </HeaderWrapper>
 
             <MainContent>
