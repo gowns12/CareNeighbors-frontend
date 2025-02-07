@@ -19,85 +19,84 @@ export default function MyPageScreen() {
             {/* Header */}
             <header className="bg-white shadow-md py-4">
                 <div className="container mx-auto px-4 flex justify-between items-center">
-                    <h1 className="text-2xl font-bold">마이페이지</h1>
+                    <h1 className="text-2xl font-bold">마이</h1>
+                    <button className="px-4 py-2 text-sm">설정</button>
                 </div>
             </header>
 
             {/* Main Content */}
             <main className="container mx-auto py-6 px-4">
-                {/* 섹션 1: 사용자 정보 */}
+                {/* 프로필 섹션 */}
                 <section className="bg-white p-6 rounded-lg shadow mb-6">
-                    <h2 className="text-xl font-semibold mb-4">사용자 정보</h2>
-                    <div className="flex items-center space-x-4">
-                        <div className="w-20 h-20 bg-gray-300 rounded-full flex-shrink-0"></div>
-                        <div>
-                            <p className="text-lg font-medium">홍길동</p>
-                            <p className="text-gray-600">이메일: example@example.com</p>
-                            <p className="text-gray-600">회원 가입일: 2023-01-01</p>
+                    <div className="flex items-start justify-between">
+                        <div className="w-16 h-16 bg-gray-300 rounded-lg flex-shrink-0 text-center">
+                            프로필 사진
+                        </div>
+                        <div className="flex-grow px-4">
+                            <p className="font-medium">김이름 (남)</p>
+                            <p className="text-gray-600">010-1234-5678</p>
+                            <p className="text-gray-600">dlapdlf@dlapdlf.com</p>
+                            <p className="text-gray-600">서울 마포구 (A 직업소개소)</p>
                         </div>
                     </div>
+                    <button className="w-full mt-4 p-2 border rounded-lg">프로필 수정</button>
                 </section>
 
-                {/* 섹션 2: 주요 메뉴 */}
-                <section className="bg-white p-6 rounded-lg shadow mb-6">
-                    <h2 className="text-xl font-semibold mb-4">주요 메뉴</h2>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                        <FeatureCard title="내 주문" description="주문 내역을 확인하세요." />
-                        <FeatureCard
-                            title="쿠폰 확인"
-                            description="사용 가능한 쿠폰을 확인하세요."
-                        />
-                        <FeatureCard
-                            title="배송지 관리"
-                            description="배송 정보를 업데이트하세요."
-                        />
-                        <FeatureCard title="개인 정보" description="회원 정보를 수정하세요." />
-                        <FeatureCard
-                            title="문의 내역"
-                            description="고객 지원 요청 내역을 확인하세요."
-                        />
+                {/* 금융 섹션 */}
+                <section className="mb-6">
+                    <div className="flex justify-between items-center mb-2">
+                        <h2 className="text-lg font-semibold">금융</h2>
+                        <button className="text-sm text-blue-600">선불카드 신청</button>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                        <button className="bg-white p-4 rounded-lg shadow text-center">
+                            앱 통장
+                        </button>
+                        <button className="bg-white p-4 rounded-lg shadow text-center">
+                            해외 송금
+                        </button>
                     </div>
                 </section>
 
-                {/* 섹션 3: 공지사항 */}
-                <section className="bg-white p-6 rounded-lg shadow mb-6">
-                    <h2 className="text-xl font-semibold mb-4">공지사항</h2>
-                    <ul className="space-y-2">
-                        <li className="p-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
-                            <a href="#" className="flex justify-between items-center">
-                                <span>공지사항 제목 1</span>
-                                <time className="text-gray-500 text-sm">2023-10-01</time>
-                            </a>
-                        </li>
-                        <li className="p-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
-                            <a href="#" className="flex justify-between items-center">
-                                <span>공지사항 제목 2</span>
-                                <time className="text-gray-500 text-sm">2023-09-28</time>
-                            </a>
-                        </li>
-                        <li className="p-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
-                            <a href="#" className="flex justify-between items-center">
-                                <span>공지사항 제목 3</span>
-                                <time className="text-gray-500 text-sm">2023-09-15</time>
-                            </a>
-                        </li>
-                    </ul>
-                </section>
-
-                {/* 섹션 4: 기타 정보 */}
-                <section className="bg-white p-6 rounded-lg shadow">
-                    <h2 className="text-xl font-semibold mb-4">기타 정보</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <FeatureCard
-                            title="포인트 관리"
-                            description="포인트 내역을 확인합니다."
-                        />
-                        <FeatureCard
-                            title="회원 등급"
-                            description="현재 등급과 혜택을 확인하세요."
-                        />
+                {/* 간병일지 섹션 */}
+                <section className="mb-6">
+                    <div className="flex justify-between items-center mb-2">
+                        <h2 className="text-lg font-semibold">간병일지</h2>
+                        <button className="text-sm text-blue-600">환자 현황</button>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                        <button className="bg-white p-4 rounded-lg shadow text-center">
+                            제출된 간병일지
+                        </button>
+                        <button className="bg-white p-4 rounded-lg shadow text-center">
+                            To-Do 리스트
+                        </button>
                     </div>
                 </section>
+
+                {/* 커뮤니티 섹션 */}
+                <section className="mb-6">
+                    <h2 className="text-lg font-semibold mb-2">커뮤니티</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        <button className="bg-white p-4 rounded-lg shadow text-center">
+                            교육
+                        </button>
+                        <button className="bg-white p-4 rounded-lg shadow text-center">
+                            질문 및 답변
+                        </button>
+                    </div>
+                </section>
+
+                {/* Bottom Navigation */}
+                <nav className="fixed bottom-0 left-0 right-0 bg-white border-t">
+                    <div className="grid grid-cols-5 gap-2 p-2">
+                        <button className="text-center">홈</button>
+                        <button className="text-center">커뮤니티</button>
+                        <button className="text-center">간병일지</button>
+                        <button className="text-center">폴짓</button>
+                        <button className="text-center">마이</button>
+                    </div>
+                </nav>
             </main>
         </div>
     );

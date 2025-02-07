@@ -1,6 +1,5 @@
 // src/app/layout.tsx
 import "./globals.css";
-import React from "react";
 
 export const metadata = {
     title: "Caregivers App",
@@ -14,7 +13,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="ko" className="h-full">
-        <body className="min-h-screen flex flex-col bg-gray-100 font-sans">
+        <body className="min-h-screen flex flex-col bg-gray-50 h-full">
         {/* Header */}
         <header className="bg-white shadow-md py-3 px-4 sticky top-0 z-10">
             <div className="max-w-md mx-auto flex justify-between items-center">
@@ -30,7 +29,7 @@ export default function RootLayout({
         </main>
 
         {/* Footer */}
-        <footer className="bg-gray-200 py-3 px-4 text-center">
+        <footer className="bg-gray-200 py-3 px-4 text-center mt-auto">
             <p className="text-sm text-gray-600">
                 © {new Date().getFullYear()} Caregivers App
             </p>

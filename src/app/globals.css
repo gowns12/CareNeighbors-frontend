@@ -4,15 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background: #f9f9f9;
+  @apply bg-gray-50 font-sans text-gray-800;
 }
+
 h1, h2, h3 {
-  color: #333;
+  @apply text-gray-900;
 }
+
 p {
-  color: #555;
+  @apply text-gray-600;
 }
