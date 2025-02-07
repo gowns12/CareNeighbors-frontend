@@ -4,7 +4,7 @@
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
     height: 100%; /* 전체 화면 높이 */
-    background-color: #f5f5f5; /* 배경색 지정 */
+    background-color: white; /* 배경색 지정 */
 }
 
 /* 화면의 고정된 너비와 비율을 설정하는 내부 컨테이너 */
@@ -15,7 +15,7 @@
     background-color: white; /* 내부 컨테이너 배경 */
     display: flex;
     flex-direction: column; /* 세로(수직) 레이아웃 */
-    border-radius: 12px; /* 모서리를 약간 둥글게 */
+    border-radius: 2px; /* 모서리를 약간 둥글게 */
     border: 1px solid black;
 }
 
@@ -92,17 +92,6 @@
     color: black; /* 텍스트 색상 */
     padding: 15px;
 }
-
-/*.mobile-container {*/
-/*    max-width: 320px; !* 모바일 화면 크기 *!*/
-/*    margin: 0 auto;*/
-/*    height: 100vh; !* 화면 전체 높이 *!*/
-/*    display: flex;*/
-/*    flex-direction: column; !* 세로 정렬 *!*/
-/*    border: 1px solid #ddd; !* 테두리 추가 *!*/
-/*    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); !* 그림자 추가 *!*/
-/*}*/
-
 .header {
     display: flex;
     background-color: white;
@@ -233,7 +222,7 @@
     left: 0;
     width: 100%;
     height: 20px;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #f9f9f9);
+    /*background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #f9f9f9);*/
     pointer-events: none; /* 클릭 불가 */
 }
 
@@ -261,6 +250,12 @@
     border: 1px solid black;
     margin-bottom: 10px;
 }
+.todolist_dateAndSave{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
 /* 모달 오버레이 */
 .modalOverlay {
     position: fixed;
@@ -268,11 +263,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5); /* 투명 검정 배경 */
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    z-index: 1000;
+    align-items: flex-end; /* 아래쪽에 모달 위치 */
 }
 
 /* 모달 컨텐츠 */
@@ -280,33 +274,60 @@
     background: white;
     width: 100%;
     max-width: 400px;
-    border-radius: 12px 12px 0 0;
-    animation: slideUp 0.4s ease-in-out;
+    border-radius: 12px 12px 0 0; /* 윗부분 둥글게 */
+    animation: slideUp 0.3s ease; /* Bottom-Up 애니메이션 */
     padding: 20px;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.4s ease;
 }
 
-/* 닫히는 애니메이션 추가 */
+/* 모달 리스트 */
+.modalList {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-block-start: 1px solid #ddd;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.modalOption {
+    padding: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+.modalOption:hover {
+    background-color: #f0f0f0;
+}
+
+/* 닫기 버튼 */
+.modalCloseButton {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    background: #ff5252;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
 .modalClosing {
-    animation: slideDown 0.4s ease-in-out;
+    opacity: 0;
+    transform: translateY(20px); /* 아래로 내려가며 닫히는 효과 */
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* 열리는 애니메이션 */
+/* Bottom-Up 애니메이션 */
 @keyframes slideUp {
     from {
         transform: translateY(100%);
     }
     to {
         transform: translateY(0);
-    }
-}
-
-/* 닫히는 애니메이션 */
-@keyframes slideDown {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(100%);
     }
 }

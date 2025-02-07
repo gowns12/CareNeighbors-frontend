@@ -1,7 +1,8 @@
 "use client";
 
 import styles from "./page.module.css";
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
+import {start} from "node:repl";
 
 interface Todo {
     id: number;
@@ -12,12 +13,10 @@ interface Todo {
 export default function TodoList() {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [selectedTodo, setSelectedTodo] = useState<string>("");
-
     const [isModalOpen, setIsModalOpen] = useState(false); // 모달 활성 상태
     const [isClosing, setIsClosing] = useState(false); // 모달 닫힘 상태
 
     const predefinedOptions = ["식사 준비", "약 복용 챙기기", "운동하기", "청소하기", "병원 예약"];
-
     useEffect(() => {
         const storedTodos = localStorage.getItem("todos");
         if (storedTodos) {
@@ -29,40 +28,36 @@ export default function TodoList() {
         localStorage.setItem("todos", JSON.stringify(todos));
     }, [todos]);
 
-    const addTodo = () => {
-        if (selectedTodo.trim() === "") return alert("할 일을 선택하세요.");
+    const addTodo = (option: string) => {
+        if (option.trim() === "") return alert("할 일을 선택하세요.");
         const newTodoItem: Todo = {
             id: Date.now(),
-            text: selectedTodo,
+            text: option,
             isCompleted: false,
         };
         setTodos([...todos, newTodoItem]);
-        setSelectedTodo("");
         closeModal(); // 모달 닫기
     };
 
     const deleteTodo = (id: number) => {
         setTodos(todos.filter((todo) => todo.id !== id));
     };
-
     const toggleCompletion = (id: number) => {
         setTodos(
             todos.map((todo) => {
                 if (todo.id === id) {
-                    return { ...todo, isCompleted: !todo.isCompleted };
+                    return {...todo, isCompleted: !todo.isCompleted};
                 }
                 return todo;
             })
         );
     };
-
-    // 모달 닫기 (애니메이션 포함)
     const closeModal = () => {
         setIsClosing(true); // 닫히는 애니메이션 시작
         setTimeout(() => {
             setIsModalOpen(false); // 애니메이션 완료 후 모달 닫힘
-            setIsClosing(false); // 상태 초기화
-        }, 400); // 애니메이션 지속 시간과 일치
+            setIsClosing(false);  // 상태 초기화
+        }, 500); // 애니메이션 지속 시간보다 약간 더 길게 (CSS의 0.4s + 여유)
     };
 
     return (
@@ -73,7 +68,6 @@ export default function TodoList() {
                     <h2 className={styles.title}>간병일지</h2>
                     <button className={styles.button}>달력전환</button>
                 </header>
-
                 <div className={styles.main_patient_button_layout}>
                     <button className={styles.main_patient_button}>환자1</button>
                     <button className={styles.main_patient_button}>환자2</button>
@@ -81,7 +75,6 @@ export default function TodoList() {
                     <button className={styles.main_patient_button}>환자4</button>
                     <button className={styles.main_patient_button}>환자5</button>
                 </div>
-
                 <div className={styles.container}>
                     <p className={styles.date_text}>2025년 1월</p>
                     <div className={styles.rightContent}>
@@ -92,6 +85,16 @@ export default function TodoList() {
                 </div>
 
                 <div className={styles.todolist}>
+                    <div className={styles.todolist_dateAndSave}>
+                        <span> 2025 </span>
+                        <button>저장하기</button>
+                    </div>
+                    <p style={{
+                        textAlign: "left"
+                        , marginTop: "-10px"
+                        , marginBottom: 5
+                        ,fontSize: "15px"
+                    }}>12</p>
                     <button
                         className={styles.openModalButton}
                         onClick={() => setIsModalOpen(true)} // 모달 열기
@@ -99,7 +102,7 @@ export default function TodoList() {
                         할 일 추가하기
                     </button>
 
-                    <ul style={{ listStyleType: "none", padding: 0 }}>
+                    <ul style={{listStyleType: "none", padding: 0}}>
                         {todos.map((todo) => (
                             <li key={todo.id} className={styles.todolist_style}>
                 <span
@@ -147,8 +150,8 @@ export default function TodoList() {
                                     <li
                                         key={index}
                                         onClick={() => {
-                                            setSelectedTodo(option);
-                                            addTodo();
+                                            // setSelectedTodo(option);
+                                            addTodo(option);
                                         }}
                                         className={styles.modalOption}
                                     >
@@ -162,7 +165,6 @@ export default function TodoList() {
                         </div>
                     </div>
                 )}
-
                 <footer className={styles.footer}>
                     <button className={styles.button}>홈</button>
                     <button className={styles.button}>커뮤니티</button>
