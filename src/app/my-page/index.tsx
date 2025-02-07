@@ -52,7 +52,7 @@ const MyPage: NextPage = () => {
                     <MenuTitle>간병일지</MenuTitle>
                     <MenuItem>환자 현황</MenuItem>
                     <MenuItem>제출된 간병일지</MenuItem>
-                    <MenuItem>투두리스트</MenuItem>
+                    <MenuItem>To-Do 리스트</MenuItem>
                 </MenuGroup>
 
                 <MenuGroup>

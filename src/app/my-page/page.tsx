@@ -1,113 +1,238 @@
+"use client";
+
 import React from "react";
+import styled from "styled-components";
+import { useRouter } from "next/navigation";
+import useProfileData from "../my-page/hooks/useProfileData";
+import Header from "../my-page/components/Header";
+import FooterNav from "../my-page/components/FooterNav";
 
-const FeatureCard = ({
-                         title,
-                         description,
-                     }: {
-    title: string;
-    description: string;
-}) => (
-    <div className="bg-gray-200 p-4 rounded-lg text-center shadow hover:shadow-lg transition">
-        <h3 className="text-lg font-bold">{title}</h3>
-        <p className="text-sm text-gray-600">{description}</p>
-    </div>
-);
+const MyPageMain = () => {
+    const { profile, loading, error } = useProfileData();
+    const router = useRouter();
 
-export default function MyPageScreen() {
+    if (loading) return <div>로딩 중...</div>;
+    if (error) return <div>에러가 발생했습니다: {error}</div>;
+    if (!profile) return <div>프로필 데이터를 불러올 수 없습니다.</div>;
+
     return (
-        <div className="min-h-screen bg-gray-100">
-            {/* Header */}
-            <header className="bg-white shadow-md py-4">
-                <div className="container mx-auto px-4 flex justify-between items-center">
-                    <h1 className="text-2xl font-bold">MY PAGE</h1>
-                    <button className="px-4 py-2 text-sm">설정</button>
-                </div>
-            </header>
+        <Container>
+            <HeaderWrapper>
+                <Title>MY PAGE</Title>
+                <SettingButton>설정</SettingButton>
+            </HeaderWrapper>
 
-            {/* Main Content */}
-            <main className="container mx-auto py-6 px-4">
-                {/* 프로필 섹션 */}
-                <section className="bg-white p-6 rounded-lg shadow mb-6">
-                    <div className="flex items-start justify-between">
-                        <div className="w-16 h-16 bg-gray-300 rounded-lg flex-shrink-0 text-center">
-                            프로필 사진
-                        </div>
-                        <div className="flex-grow px-4">
-                            <p className="font-medium">김이름 (남)</p>
-                            <p className="text-gray-600">010-1234-5678</p>
-                            <p className="text-gray-600">dlapdlf@dlapdlf.com</p>
-                            <p className="text-gray-600">서울 마포구 (A 직업소개소)</p>
-                        </div>
-                    </div>
-                    <button className="w-full mt-4 p-2 border rounded-lg">프로필 수정</button>
-                </section>
+            <MainContent>
+                <ProfileSection>
+                    <ProfileImageWrapper>
+                        <img src={profile.image || "/images/default-profile.jpg"} alt="프로필" />
+                    </ProfileImageWrapper>
+                    <ProfileInfo>
+                        <Name>{profile.name}</Name>
+                        <Phone>{profile.phone}</Phone>
+                        <Email>{profile.email}</Email>
+                    </ProfileInfo>
+                </ProfileSection>
 
-                {/* 금융 섹션 */}
-                <section className="mb-6">
-                    <div className="flex justify-between items-center mb-2">
-                        <h2 className="text-lg font-semibold">금융</h2>
-                        <button className="text-sm text-blue-600">선불카드 신청</button>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                        <button className="bg-white p-4 rounded-lg shadow text-center">
+                {/* 프로필 수정 버튼 */}
+                <EditProfileButton onClick={() => router.push("/my-page/profile-edit")}>
+                    프로필 수정
+                </EditProfileButton>
+
+                <Section>
+                    <SectionTitle>금융</SectionTitle>
+                    <ButtonRow>
+                        <StyledButton onClick={() => router.push("/my-page/accounts")}>
                             앱 통장
-                        </button>
-                        <button className="bg-white p-4 rounded-lg shadow text-center">
+                        </StyledButton>
+                        <StyledButton onClick={() => router.push("/my-page/remittance")}>
                             해외 송금
-                        </button>
-                    </div>
-                </section>
+                        </StyledButton>
+                    </ButtonRow>
+                </Section>
 
-                {/* 간병일지 섹션 */}
-                <section className="mb-6">
-                    <div className="flex justify-between items-center mb-2">
-                        <h2 className="text-lg font-semibold">간병일지</h2>
-                        <button className="text-sm text-blue-600">환자 현황</button>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                        <button className="bg-white p-4 rounded-lg shadow text-center">
+                <Section>
+                    <SectionTitle>간병일지</SectionTitle>
+                    <ButtonRow>
+                        <StyledButton onClick={() => router.push("/my-page/logs")}>
                             제출된 간병일지
-                        </button>
-                        <button className="bg-white p-4 rounded-lg shadow text-center">
+                        </StyledButton>
+                        <StyledButton onClick={() => router.push("/my-page/todolist")}>
                             To-Do 리스트
-                        </button>
-                    </div>
-                </section>
+                        </StyledButton>
+                    </ButtonRow>
+                </Section>
 
-                {/* 커뮤니티 섹션 */}
-                <section className="mb-6">
-                    <h2 className="text-lg font-semibold mb-2">커뮤니티</h2>
-                    <div className="grid grid-cols-2 gap-4">
-                        <button className="bg-white p-4 rounded-lg shadow text-center">
+                <Section>
+                    <SectionTitle>커뮤니티</SectionTitle>
+                    <ButtonRow>
+                        <StyledButton onClick={() => router.push("/community/education")}>
                             교육
-                        </button>
-                        <button className="bg-white p-4 rounded-lg shadow text-center">
+                        </StyledButton>
+                        <StyledButton onClick={() => router.push("/community/qna")}>
                             질문 및 답변
-                        </button>
-                    </div>
-                </section>
+                        </StyledButton>
+                    </ButtonRow>
+                </Section>
 
-                {/* Bottom Navigation */}
-                <nav className="fixed bottom-0 left-0 right-0 bg-white border-t">
-                    <div className="grid grid-cols-5 gap-1 p-3">
-                        <button className="flex flex-col items-center justify-center h-16 text-sm">
-                            홈
-                        </button>
-                        <button className="flex flex-col items-center justify-center h-16 text-sm">
-                            커뮤니티
-                        </button>
-                        <button className="flex flex-col items-center justify-center h-16 text-sm">
-                            간병일지
-                        </button>
-                        <button className="flex flex-col items-center justify-center h-16 text-sm">
-                            폴짓
-                        </button>
-                        <button className="flex flex-col items-center justify-center h-16 text-sm">
-                            마이
-                        </button>
-                    </div>
-                </nav>
-            </main>
-        </div>
+                <TabBar>
+                    <Tab>홈</Tab>
+                    <Tab>커뮤니티</Tab>
+                    <Tab>간병일지</Tab>
+                    <Tab>쪽지,선물</Tab>
+                    <Tab isActive>마이</Tab>
+                </TabBar>
+            </MainContent>
+            <FooterNav />
+        </Container>
     );
-}
+};
+
+const Container = styled.div`
+    min-height: 100vh;
+    background-color: #f8f9fa;
+`;
+
+const HeaderWrapper = styled.header`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+`;
+
+const Title = styled.h1`
+    font-size: 18px;
+    font-weight: bold;
+`;
+
+const SettingButton = styled.button`
+    border: none;
+    background: none;
+    font-size: 16px;
+`;
+
+const MainContent = styled.main`
+    padding: 16px;
+`;
+
+const ProfileSection = styled.div`
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+`;
+
+const ProfileImageWrapper = styled.div`
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+`;
+
+const ProfileInfo = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+`;
+
+const Name = styled.span`
+    font-size: 16px;
+    font-weight: bold;
+`;
+
+const Phone = styled.span`
+    font-size: 14px;
+    color: #666;
+`;
+
+const Email = styled.span`
+    font-size: 14px;
+    color: #666;
+`;
+
+const Address = styled.span`
+    font-size: 14px;
+    color: #666;
+`;
+
+const EditProfileButton = styled.button`
+    width: 100%;
+    padding: 12px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #f1f1f1;
+    }
+`;
+
+const Section = styled.section`
+    margin-bottom: 24px;
+`;
+
+const SectionTitle = styled.h2`
+    font-size: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+const ButtonRow = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+`;
+
+const StyledButton = styled.button`
+    width: 100%;
+    padding: 16px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #f3f3f3;
+    }
+`;
+
+const TabBar = styled.div`
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 8px;
+    border-top: 1px solid #eee;
+`;
+
+const Tab = styled.button<{ isActive?: boolean }>`
+    padding: 8px;
+    border: none;
+    background: ${props => props.isActive ? '#f0f0f0' : 'white'};
+    font-size: 12px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #f7f7f7;
+    }
+`;
+
+export default MyPageMain;
