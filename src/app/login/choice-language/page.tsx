@@ -21,35 +21,29 @@ const LanguageSelector: React.FC = () => {
     ]
 
     return (
-        <div className={pageStyles.container}>
-            <div className={pageStyles.mobileView}>
-                <div className={contentStyles.innerContent}>
-                    <h1 style={{fontSize: '16px', fontWeight: '400'}}><br/>언어</h1>
-                    <form>
-                        {language.map((lang: string) => (
-                            <RadioBox
-                                key={lang}
-                                language={lang}
-                                setSelectedLanguage={selectedLanguage}
-                                handleLanguageChange={handleLanguageChange}
-                            />
-                        ))}
-                    </form>
-                    <NextButton {...next} />
-                </div>
-            </div>
+        <div className={contentStyles.innerContent}>
+            <h1 style={{fontSize: '16px', fontWeight: '400'}}><br/>언어</h1>
+            <form>
+                {language.map((lang: string) => (
+                    <RadioBox
+                        key={lang}
+                        language={lang}
+                        setSelectedLanguage={selectedLanguage}
+                        handleLanguageChange={handleLanguageChange}
+                    />
+                ))}
+            </form>
+            <NextButton {...next} />
         </div>
-
-);
+    )
 }
 
 
-
-function RadioBox(props : {
+function RadioBox(props: {
     language: string;
-    setSelectedLanguage : string;
+    setSelectedLanguage: string;
     handleLanguageChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-} ) {
+}) {
     return (
         <div className={contentStyles.radioBox}>
             <input className={contentStyles.radio}
