@@ -1,7 +1,15 @@
 .backButton {
-    width: 50px;
+    width: 65px;
     height: 30px;
     position: absolute;
-    left: 783px;
-    top: 143px;
+    border-radius: 10px;
+    background-color: rgb(156 163 175);
+    left: 780px;
+    top: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.backButton:hover {
+    background-color: rgb(107, 114, 128);
 }

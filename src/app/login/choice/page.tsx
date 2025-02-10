@@ -16,7 +16,7 @@ export default function LoginScreen() {
             <div className={pageStyles.mobileView}>
                 <div className={contentStyles.innerContents}>
                     <BackButton url="/login/choice-language"/>
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
                     로고
                     <LoginButton {...choice}/>
                     <div className={contentStyles.footerNotice}>

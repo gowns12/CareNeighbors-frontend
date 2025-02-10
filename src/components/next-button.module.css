@@ -1,0 +1,14 @@
+.button {
+    width: 350px;
+    height: 40px;
+    background-color: rgb(170, 170, 181);
+    border-radius: 0.5rem;
+    position: absolute; /* 위치 지정 활성화 */
+    bottom: 165px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button:hover {
+    background-color: rgb(151, 141, 141);
+}

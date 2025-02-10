@@ -2,6 +2,7 @@
 import pageStyles from '../page.module.css';
 import contentStyles from './page.module.css';
 import React, {useState} from 'react';
+import {NextButton} from "@/components/next-button";
 
 const LanguageSelector: React.FC = () => {
     const [selectedLanguage, setSelectedLanguage] = useState<string>('한국어');
@@ -10,9 +11,13 @@ const LanguageSelector: React.FC = () => {
         setSelectedLanguage(event.target.value);
     };
 
+    const next = {
+        url: '/login/choice',
+        text: "다음"
+    }
 
-    const language : string[] = [
-        "한국어","English", "日本語", "Русский", "Монгол"
+    const language: string[] = [
+        "한국어", "English", "日本語", "Русский", "Монгол"
     ]
 
     return (
@@ -21,7 +26,7 @@ const LanguageSelector: React.FC = () => {
                 <div className={contentStyles.innerContent}>
                     <h1 style={{fontSize: '16px', fontWeight: '400'}}><br/>언어</h1>
                     <form>
-                        {language.map((lang :string) => (
+                        {language.map((lang: string) => (
                             <RadioBox
                                 key={lang}
                                 language={lang}
@@ -30,19 +35,21 @@ const LanguageSelector: React.FC = () => {
                             />
                         ))}
                     </form>
-                    <button className={contentStyles.button} onClick={() => window.location.href = "/login/choice"}>
-                        다음
-                    </button>
+                    <NextButton {...next} />
                 </div>
             </div>
         </div>
 
-    );
+);
 }
 
 
 
-function RadioBox(props : { language: string; setSelectedLanguage : string; handleLanguageChange: (event: React.ChangeEvent<HTMLInputElement>) => void } ) {
+function RadioBox(props : {
+    language: string;
+    setSelectedLanguage : string;
+    handleLanguageChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+} ) {
     return (
         <div className={contentStyles.radioBox}>
             <input className={contentStyles.radio}

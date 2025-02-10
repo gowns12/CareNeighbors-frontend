@@ -37,7 +37,7 @@
     font-size: 12px; /* 작은 글씨 크기 */
     color: #555; /* 회색 텍스트 */
     text-align: center; /* 가운데 정렬 */
-    margin-top: 150px; /* 상단 내용과의 간격 위해 설정 */
+    margin-top: 110px; /* 상단 내용과의 간격 위해 설정 */
     padding: 15px 10px; /* 화면 경계와 여백 */
     line-height: 1.5; /* 텍스트 줄 간격 */
 }
