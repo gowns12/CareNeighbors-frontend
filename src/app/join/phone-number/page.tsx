@@ -7,7 +7,7 @@ import SelectCarrier from "@/app/join/phone-number/selectCarrier";
 
 export default function ChoicePage(){
     const next = {
-        url:'/join/join-complete',
+        url:'./user-information-input',
         text:"다음"
     }
 
