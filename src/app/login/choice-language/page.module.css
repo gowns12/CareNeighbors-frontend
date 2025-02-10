@@ -1,0 +1,44 @@
+/* 내부 콘텐츠 정렬 */
+.innerContent {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.radioBox {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 5px;
+    width: 330px;
+    height: 30px;
+}
+
+/* 라디오 버튼 스타일 */
+.radio {
+    border: 1px solid black;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.radioLabel {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/* 버튼 기본 스타일 */
+.button {
+    width: 350px;
+    height: 40px;
+    background-color: rgba(205, 187, 187, 0.53);
+    border-radius: 0.5rem;
+    position: absolute; /* 위치 지정 활성화 */
+    bottom: 140px;
+}
+
+.button:hover {
+    background-color: rgba(78, 73, 73, 0.34);
+}

@@ -1,46 +1,46 @@
-'use client'
+import pageStyles from '../page.module.css';
+import contentStyles from './page.module.css';
+import {BackButton} from "@/components/back-button";
+import Link from "next/link";
 
-import React from 'react';
-import {useRouter} from 'next/navigation';
-
-const LoginScreen: React.FC = () => {
-    const router = useRouter();
+export default function LoginScreen() {
+    const choice = {
+        "카카오로 시작하기":"",
+        "구글로 시작하기":"",
+        "애플로 시작하기":"",
+        "전화번호로 시작하기":"/join/phone-number"
+    }
 
     return (
-        <div className="flex flex-col items-center justify-between h-screen p-6">
-            {/* Top Section */}
-            <div className="w-full flex justify-start">
-                <button
-                    className="text-blue-500 text-sm"
-                    onClick={() => router.push('./choice-language')}>
-                    ← 언어선택으로
-                </button>
-            </div>
+        <div className={pageStyles.container}>
+            <div className={pageStyles.mobileView}>
+                <div className={contentStyles.innerContents}>
+                    <BackButton url="/login/choice-language"/>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    로고
+                    <LoginButton {...choice}/>
+                    <div className={contentStyles.footerNotice}>
+                        회원가입을 진행함으로써 <a href="/terms"><u>서비스 이용약관</u></a> 및 <a href="/privacy">개인정보 처리방침</a>에 동의하는 것으로 간주됩니다.
+                    </div>
+                </div>
 
-            {/* Buttons Section */}
-            <div className="flex flex-col gap-4 w-full max-w-xs">
-                <button className="w-full py-3 bg-yellow-400 text-black font-bold rounded-lg">
-                    카카오로 시작하기
-                </button>
-                <button className="w-full py-3 bg-red-500 text-white font-bold rounded-lg">
-                    구글로 시작하기
-                </button>
-                <button className="w-full py-3 bg-black text-white font-bold rounded-lg">
-                    애플로 시작하기
-                </button>
-                <button
-                    className="w-full py-3 bg-gray-300 text-black font-bold rounded-lg"
-                    onClick={() => router.push('/join/phone-number')}>
-                    전화번호로 시작하기
-                </button>
-            </div>
-
-            {/* Footer Section */}
-            <div className="text-center text-xs text-gray-500">
-                회원가입을 진행함으로써 개인정보 처리방침에 동의하는 것으로 간주합니다.
             </div>
         </div>
     );
-};
+}
 
-export default LoginScreen;
+function LoginButton(props: Record<string, string>) {
+    return (
+        <div className={contentStyles.buttonContainer}>
+            {Object.entries(props).map(([key, value]) => (
+                <Link key={key} href={value} className={contentStyles.button}>{key}</Link>
+            ))}
+        </div>
+    )
+}
+
+
+
+
+
+

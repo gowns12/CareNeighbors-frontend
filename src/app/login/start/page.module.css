@@ -1,0 +1,27 @@
+/* 내부 콘텐츠 정렬 */
+.innerContent {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 로고 스타일 */
+.logo {
+    @apply w-32 h-32 bg-white border-black border-8 mb-8 flex items-center justify-center text-black text-center font-semibold;
+}
+
+/* 버튼 기본 스타일 */
+.button {
+    width: 350px;
+    height: 40px;
+    background-color: rgba(205, 187, 187, 0.53);
+    border-radius: 0.5rem;
+    position: absolute; /* 위치 지정 활성화 */
+    bottom: 140px;
+}
+
+.button:hover {
+    background-color: rgba(78, 73, 73, 0.34);
+}

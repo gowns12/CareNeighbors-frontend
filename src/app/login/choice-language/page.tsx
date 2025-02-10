@@ -1,5 +1,6 @@
 'use client'
-
+import pageStyles from '../page.module.css';
+import contentStyles from './page.module.css';
 import React, {useState} from 'react';
 
 const LanguageSelector: React.FC = () => {
@@ -9,76 +10,54 @@ const LanguageSelector: React.FC = () => {
         setSelectedLanguage(event.target.value);
     };
 
+
+    const language : string[] = [
+        "한국어","English", "日本語", "Русский", "Монгол"
+    ]
+
     return (
-        <div>
-            <h1>언어</h1>
-            <form>
-                <div>
-                    <label>
-                        <input
-                            type="radio"
-                            name="language"
-                            value="한국어"
-                            checked={selectedLanguage === '한국어'}
-                            onChange={handleLanguageChange}
-                        />
-                        한국어
-                    </label>
+        <div className={pageStyles.container}>
+            <div className={pageStyles.mobileView}>
+                <div className={contentStyles.innerContent}>
+                    <h1 style={{fontSize: '16px', fontWeight: '400'}}><br/>언어</h1>
+                    <form>
+                        {language.map((lang :string) => (
+                            <RadioBox
+                                key={lang}
+                                language={lang}
+                                setSelectedLanguage={selectedLanguage}
+                                handleLanguageChange={handleLanguageChange}
+                            />
+                        ))}
+                    </form>
+                    <button className={contentStyles.button} onClick={() => window.location.href = "/login/choice"}>
+                        다음
+                    </button>
                 </div>
-                <div>
-                    <label>
-                        <input
-                            type="radio"
-                            name="language"
-                            value="English"
-                            checked={selectedLanguage === 'English'}
-                            onChange={handleLanguageChange}
-                        />
-                        English
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input
-                            type="radio"
-                            name="language"
-                            value="日本語"
-                            checked={selectedLanguage === '日本語'}
-                            onChange={handleLanguageChange}
-                        />
-                        日本語
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input
-                            type="radio"
-                            name="language"
-                            value="Русский"
-                            checked={selectedLanguage === 'Русский'}
-                            onChange={handleLanguageChange}
-                        />
-                        Русский
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input
-                            type="radio"
-                            name="language"
-                            value="Монгол"
-                            checked={selectedLanguage === 'Монгол'}
-                            onChange={handleLanguageChange}
-                        />
-                        Монгол
-                    </label>
-                </div>
-            </form>
-            <button onClick={() => window.location.href = "/login/choice"}>
-                다음
-            </button>
+            </div>
         </div>
+
     );
-};
+}
+
+
+
+function RadioBox(props : { language: string; setSelectedLanguage : string; handleLanguageChange: (event: React.ChangeEvent<HTMLInputElement>) => void } ) {
+    return (
+        <div className={contentStyles.radioBox}>
+            <input className={contentStyles.radio}
+                   type="radio"
+                   id={props.language}
+                   name="language"
+                   value={props.language}
+                   checked={props.setSelectedLanguage === props.language}
+                   onChange={props.handleLanguageChange}
+            />
+            <label className={contentStyles.radioLabel} htmlFor={props.language}>
+                {props.language}
+            </label>
+        </div>
+    )
+}
 
 export default LanguageSelector;

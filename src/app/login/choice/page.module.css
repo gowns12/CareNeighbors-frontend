@@ -1,0 +1,53 @@
+.innerContents {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button {
+    background-color: #ffffff;
+    width: 200px;
+    color: #000000;
+    padding: 10px 15px;
+    border: black 1px solid;
+    border-radius: 5px;
+    margin: 5px;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #8e8e91;
+}
+
+/* 하단 문구 스타일 */
+.footerNotice {
+    font-size: 12px; /* 작은 글씨 크기 */
+    color: #555; /* 회색 텍스트 */
+    text-align: center; /* 가운데 정렬 */
+    margin-top: 150px; /* 상단 내용과의 간격 위해 설정 */
+    padding: 15px 10px; /* 화면 경계와 여백 */
+    line-height: 1.5; /* 텍스트 줄 간격 */
+}
+
+
+.footerNotice a {
+    color: #3b82f6; /* 파란색 */
+    text-decoration: underline; /* 링크는 밑줄 포함 */
+}
+
+.footerNotice a:hover {
+    color: #2563eb; /* hover할 때 약간 더 어두운 파란색 */
+}
