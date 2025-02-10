@@ -19,8 +19,7 @@ const ChoicePage: React.FC = () => {
     };
 
     const handleNextClick = () => {
-        // Logic for submitting phone number, carrier, and verification code goes here
-        console.log('Proceeding to the next step...');
+        router.push('./join-complete');
     };
 
     return (
