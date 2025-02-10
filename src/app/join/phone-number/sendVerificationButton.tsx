@@ -1,7 +1,5 @@
 'use client'
 
-import {NextButton} from "@/components/next-button";
-
 export default function SendVerificationButton() {
 
     const handleSendVerification = () => {
