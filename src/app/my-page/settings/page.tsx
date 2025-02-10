@@ -2,7 +2,7 @@
 
 import React from "react";
 import styled from "styled-components";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; // Next.js useRouter import
 
 const Page = () => {
     const router = useRouter();
@@ -16,7 +16,7 @@ const Page = () => {
 
             <SettingsList>
                 {/* 언어 선택 */}
-                <Item>
+                <Item onClick={() => router.push("/login/choice-language")}> {/* 언어 선택 페이지로 이동 */}
                     <span>언어</span>
                     <SelectedValue>한국어</SelectedValue>
                 </Item>
@@ -85,7 +85,6 @@ const Title = styled.h1`
 const SettingsList = styled.div`
     margin-top: 16px;
     background-color: white;
-    
 `;
 
 const Item = styled.div`
@@ -96,6 +95,11 @@ const Item = styled.div`
     border-bottom: 1px solid #eee;
     font-size: 16px;
     color: #333;
+    cursor: pointer; /* 추가: 클릭 가능 스타일 */
+
+    &:hover {
+        background-color: #f8f8f8;
+    }
 `;
 
 const SelectedValue = styled.span`
