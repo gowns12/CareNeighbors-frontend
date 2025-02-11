@@ -1,0 +1,333 @@
+/* 화면 전체를 컨트롤하는 외부 컨테이너 */
+.outerContainer {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    height: 100%; /* 전체 화면 높이 */
+    background-color: white; /* 배경색 지정 */
+}
+
+/* 화면의 고정된 너비와 비율을 설정하는 내부 컨테이너 */
+.innerContainer {
+    aspect-ratio: 9 / 16; /* 고정 비율(9:16) */
+    width: 100%; /* 초기 너비를 100%로 설정 */
+    max-width: 400px; /* 최대 너비 제한 (스마트폰처럼) */
+    background-color: white; /* 내부 컨테이너 배경 */
+    display: flex;
+    flex-direction: column; /* 세로(수직) 레이아웃 */
+    border-radius: 2px; /* 모서리를 약간 둥글게 */
+    border: 1px solid black;
+}
+
+/*간병 일지*/
+.title {
+    display: inline-block;
+    justify-content: center;
+}
+
+/*Todo 날짜와 버튼  */
+/* 부모 컨테이너: 한 줄 배치와 공간 분배 */
+.container {
+    display: flex;
+    justify-content: space-between; /* 좌우 끝으로 간격 분배 */
+    align-items: center; /* 세로 정렬 가운데 */
+    padding: 10px; /* 필요한 경우 간격 추가 */
+}
+
+/* (버튼과 텍스트)*/
+.rightContent {
+    display: flex;
+    align-items: center;
+}
+
+.mouse_on:hover {
+    background-color: #e6e6e6; /* 마우스 올렸을 때 배경색 */
+    border-color: #999; /* 마우스 올렸을 때 테두리 색 */
+    cursor: pointer; /* 클릭 가능한 느낌을 추가 */
+}
+
+/* "오늘"문자 스타일*/
+.separator {
+    border: solid 1px black;
+    padding: 6px 12px; /* 내부 여백 추가해 박스의 크기 키움 */
+    margin: 0 3px; /* 버튼과의 간격을 조정 (기본보다 좁게) */
+    font-size: 14px; /* 버튼과 크기 같은지 필요시 확인 */
+    color: #333; /* 필요시 색상 지정 */
+}
+
+/*버튼 스타일*/
+.date_choice_button_NextPrev :hover {
+    background-color: #e6e6e6; /* 마우스 올렸을 때 배경색 */
+    border-color: #999; /* 마우스 올렸을 때 테두리 색 */
+    cursor: pointer; /* 클릭 가능한 느낌을 추가 */
+}
+
+.date_choice_button_NextPrev {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px black;
+    border-radius: 0;
+    width: 30px;
+    height: 34px;
+
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    padding: 0;
+    margin: 0; /* 버튼 사이 간격 */
+    font-size: 18px;
+    background-color: white;
+    cursor: pointer; /* 클릭 가능한 스타일 */
+}
+.date_choice_button_NextPrev:hover{
+    background-color: #e6e6e6; /* 마우스 올렸을 때 배경색 */
+    border-color: #999; /* 마우스 올렸을 때 테두리 색 */
+    cursor: pointer; /* 클릭 가능한 느낌을 추가 */
+}
+
+/*todo 날짜 텍스트 */
+.date_text {
+    display: inline-block;
+    font-size: 18px; /* 텍스트 크기 */
+    font-weight: 550;
+    color: black; /* 텍스트 색상 */
+    padding: 15px;
+}
+.header {
+    display: flex;
+    background-color: white;
+    justify-content: space-between; /*양쪽으로 퍼지도록 설정*/
+    align-items: center; /* 중앙 세로 정렬 */
+    color: black;
+    text-align: center;
+    padding: 16px;
+    font-size: 18px;
+}
+
+/*todo 환자버튼 정리 */
+.main_patient_button_layout {
+    overflow-x: auto;
+    display: flex; /*Flexbox 활성화*/
+    justify-content: space-between; /*텍스트 정렬*/
+    padding: 0 20px; /* 컨테이너 양쪽에 여백 20px */
+}
+
+/* todo 하단 버튼*/
+.footer {
+    width: 100%; /* 초기 너비를 100%로 설정 */
+    max-width: 100%; /* 부모를 넘지 않도록 제한 */
+    bottom: 0;
+    left: 0;
+    margin-top: auto; /* 자식 요소를 부모의 최하단으로 밀기 */
+
+    justify-content: space-between;
+    display: flex; /* Flexbox 활성화 */
+    background-color: white; /* 내부 컨테이너 배경 */
+    box-sizing: border-box; /*크기 계산*/
+    padding: 16px; /*여백*/
+    flex-wrap: wrap; /*요소가 화면을 넘치지 않도록 줄바꿈*/
+    text-align: center;
+    cursor: pointer; /* 클릭 가능한 스타일 */
+}
+
+/* todo 헤더 안 버튼 */
+.button {
+    justify-content: center; /*가로 중앙 정렬*/
+    align-items: center; /* 세로 중앙 정렬*/
+    width: 50px; /* 버튼의 너비 */
+    height: 50px; /* 버튼의 높이 (너비와 같게 설정) */
+    display: flex; /* 내부 아이템을 가운데 정렬하기 위해 Flexbox 활성화 */
+    background-color: white; /* 버튼 배경색 */
+    color: black; /* 버튼 텍스트 색상 */
+    border: 1px solid black; /* 테두리 */
+    border-radius: 4px; /* 버튼 모서리 둥글게 (선택) */
+    cursor: pointer; /* 클릭 가능한 스타일 */
+    transition: background-color 0.2s ease-in-out; /* 호버 시 배경색 전환 효과 */
+}
+.button:hover {
+    background-color: #e6e6e6; /* 마우스 올렸을 때 배경색 */
+    border-color: #999; /* 마우스 올렸을 때 테두리 색 */
+    cursor: pointer; /* 클릭 가능한 느낌을 추가 */
+}
+
+/* Todo 메인 속 환자 버튼*/
+.main_patient_button {
+    display: flex; /* 내부 아이템을 가운데 정렬하기 위해 Flexbox 활성화 */
+    justify-content: center; /*텍스트 가로 중앙 정렬*/
+    align-items: center; /*텍스트 세로 중앙 정렬*/
+
+    width: 50px; /* 버튼의 너비 */
+    height: 50px; /* 버튼의 높이 (너비와 같게 설정) */
+    border: 1px solid black; /* 테두리 색상 */
+    border-radius: 50%; /* 버튼  둥글게 (선택) */
+
+    color: black; /* 버튼 텍스트 색상 */
+    background-color: white; /* 버튼 배경색 */
+    cursor: pointer; /* 클릭 가능한 스타일 */
+
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.main_patient_button:hover {
+    background-color: #e6e6e6; /* 마우스 올렸을 때 배경색 */
+    border-color: #999; /* 마우스 올렸을 때 테두리 색 */
+    cursor: pointer; /* 클릭 가능한 느낌을 추가 */
+}
+
+.todolist::-webkit-scrollbar {
+    width: 6px; /* 스크롤바 두께 */
+    display: none; /* 초기 상태 숨김 */
+}
+.todolist::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3); /* 스크롤바 색상 */
+    border-radius: 4px;
+    cursor: pointer;
+    display: none;
+}
+
+/*todo todolist 마개조 하기*/
+.todolist {
+    display: flex;
+
+    width: 95%;
+    max-width: 100%;
+    height: 100%;
+    max-block-size: 100%;
+
+    /*padding: 20px;*/
+    flex-direction: column;
+    text-align: center;
+    box-sizing: border-box; /*크기 계산*/
+    max-height: 300px; /* 최대 높이 설정 (필요에 따라 조정 가능) */
+    overflow-y: auto;  /* 세로 스크롤 활성화 */
+
+    padding: 10px;
+    margin: 10px;
+
+    border: 1px solid black; /* 경계선 추가 (선택 사항) */
+    border-radius: 4px; /* 경계선 둥글게 */
+    background-color: #f9f9f9; /* 배경색 (선택 사항) */
+
+    scrollbar-gutter: stable; /* 스크롤바 공간 안정적으로 유지 */
+    scrollbar-width: none; /* 모던 브라우저에서 스크롤바 숨기기 */
+    -ms-overflow-style: none; /* Internet Explorer 스크롤바 숨기기 */
+
+    /*will-change: transform; !* 성능 최적화 *!*/
+    /*scroll-behavior: smooth;*/
+    /*transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1); !* 탄성 효과 곡선 *!*/
+}
+.todolist::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    /*background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #f9f9f9);*/
+    pointer-events: none; /* 클릭 불가 */
+}
+
+.todolist_style {
+    margin-bottom: 3px;
+    padding: 2px;
+    background-color: whitesmoke;
+    border-left: 3px solid lightblue;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todo_style {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column; /*세로 정렬*/
+    align-items: flex-start;
+
+    /* 한줄 전체를 사용하도록 설정*/
+    box-sizing: border-box;
+    padding: 0;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+.todolist_dateAndSave{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+/* 모달 오버레이 */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 투명 검정 배경 */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* 아래쪽에 모달 위치 */
+}
+
+/* 모달 컨텐츠 */
+.modalContent {
+    background: white;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px 12px 0 0; /* 윗부분 둥글게 */
+    animation: slideUp 0.3s ease; /* Bottom-Up 애니메이션 */
+    padding: 20px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+/* 모달 리스트 */
+.modalList {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-block-start: 1px solid #ddd;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.modalOption {
+    padding: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+.modalOption:hover {
+    background-color: #f0f0f0;
+}
+
+/* 닫기 버튼 */
+.modalCloseButton {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    background: #ff5252;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.modalClosing {
+    opacity: 0;
+    transform: translateY(20px); /* 아래로 내려가며 닫히는 효과 */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Bottom-Up 애니메이션 */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
