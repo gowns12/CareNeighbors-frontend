@@ -13,6 +13,6 @@ export function BackButton({url}: BackButtonProps) {
 
     return <button className={styles.backButton}
         onClick={() => router.push(url)}>
-        뒤로
+        {"< 뒤로"}
     </button>
 }

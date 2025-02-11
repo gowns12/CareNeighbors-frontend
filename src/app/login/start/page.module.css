@@ -16,12 +16,15 @@
 .button {
     width: 350px;
     height: 40px;
-    background-color: rgba(205, 187, 187, 0.53);
+    background-color: rgb(170, 170, 181);
     border-radius: 0.5rem;
     position: absolute; /* 위치 지정 활성화 */
-    bottom: 140px;
+    bottom: 165px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .button:hover {
-    background-color: rgba(78, 73, 73, 0.34);
+    background-color: rgb(151, 141, 141);
 }

@@ -8,6 +8,9 @@
 
 /* 모바일 해상도 화면 정의 */
 .mobileView {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 375px;
     height: 667px;
     border: 1px solid black;
