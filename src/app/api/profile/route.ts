@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 // GET 요청 처리: 프로필 정보를 반환
 export async function GET() {
     return NextResponse.json({
-        name: "홍길동", // 새로운 이름으로 업데이트
-        gender: "남", // 성별 유지
+        name: "김나나", // 새로운 이름으로 업데이트
+        gender: "여", // 성별 유지
         phone: "010-9876-5432", // 수정된 전화번호
         email: "example@example.com", // 수정된 이메일
         location: "서울 강남구", // 변경된 주소

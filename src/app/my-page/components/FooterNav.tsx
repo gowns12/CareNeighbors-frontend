@@ -8,9 +8,9 @@ const FooterNav = () => {
 
     // routes 정보를 컴포넌트 내부에서 정의
     const routes = [
-        { label: "홈", path: "/", icon: "🏠" },
+        { label: "홈", path: "/home", icon: "🏠" },
         { label: "커뮤니티", path: "/community", icon: "💬" },
-        { label: "간병일지", path: "/care-log", icon: "📋" },
+        { label: "간병일지", path: "/care-journal", icon: "📋" },
         { label: "정책", path: "/policy", icon: "📜" },
         { label: "마이페이지", path: "/my-page", icon: "🙋‍♂️" },
     ];

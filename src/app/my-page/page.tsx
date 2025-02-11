@@ -10,6 +10,7 @@ const MyPageMain = () => {
     const { profile, loading, error } = useProfileData();
     const router = useRouter();
 
+
     if (loading) return <div>로딩 중...</div>;
     if (error) return <div>에러가 발생했습니다: {error}</div>;
     if (!profile) return <div>프로필 데이터를 불러올 수 없습니다.</div>;
@@ -24,7 +25,7 @@ const MyPageMain = () => {
             <MainContent>
                 <ProfileSection>
                     <ProfileImageWrapper>
-                        <img src={profile.image || "/images/default-profile.jpg"} alt="프로필" />
+                        <img src={profile.image || "/images/profile.PNG"} alt="프로필" />
                     </ProfileImageWrapper>
                     <ProfileInfo>
                         {/* 이름과 성별을 한 줄로 배치 */}
@@ -82,19 +83,17 @@ const MyPageMain = () => {
                 </Section>
 
                 <TabBar>
-                    {/* isActive를 DOM에 전달하지 않고 스타일링에 활용 */}
-                    <Tab $active>홈</Tab>
-                    <Tab>커뮤니티</Tab>
-                    <Tab>간병일지</Tab>
-                    <Tab>쪽지,선물</Tab>
-                    <Tab $active>마이</Tab>
+                    <Tab $active onClick={() => router.push("/home")}>홈</Tab>
+                    <Tab onClick={() => router.push("/community")}>커뮤니티</Tab>
+                    <Tab onClick={() => router.push("/care-journal")}>간병일지</Tab>
+                    <Tab onClick={() => router.push("/message")}>쪽지,선물</Tab>
+                    <Tab onClick={() => router.push("/my-page")}>마이</Tab>
                 </TabBar>
             </MainContent>
             <FooterNav />
         </Container>
     );
 };
-
 const Container = styled.div`
     min-height: 100vh;
     background-color: #f8f9fa;
