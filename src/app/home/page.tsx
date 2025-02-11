@@ -47,7 +47,7 @@ const HomeMain = () => {
                 <NotificationButton>알림</NotificationButton>
             </HeaderWrapper>
 
-            <Banner>배너</Banner>
+            <Banner><BannerImage src="/images/banner.PNG" alt="배너 이미지" /></Banner>
 
             <QuickMenu>
                 <QuickMenuItem onClick={() => router.push("/my-page/appAccount")}>앱 통장</QuickMenuItem>
@@ -81,9 +81,9 @@ const HomeMain = () => {
             </JobSection>
 
             <TabBar>
-                <Tab $active>홈</Tab>
+                <Tab $active onClick={() => router.push("/home")}>홈</Tab>
                 <Tab onClick={() => router.push("/community")}>커뮤니티</Tab>
-                <Tab onClick={() => router.push("/care-log")}>간병일지</Tab>
+                <Tab onClick={() => router.push("/care-journal")}>간병일지</Tab>
                 <Tab onClick={() => router.push("/message")}>쪽지,선물</Tab>
                 <Tab onClick={() => router.push("/my-page")}>마이</Tab>
             </TabBar>
@@ -120,12 +120,15 @@ const NotificationButton = styled.button`
 
 const Banner = styled.div`
     height: 150px;
-    background-color: #ddd;
     margin: 16px;
     border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden; /* 이미지가 div를 넘어가지 않도록 */
+`;
+
+const BannerImage = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지가 div에 꽉 차도록 */
 `;
 
 const QuickMenu = styled.div`
