@@ -3,6 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/navigation";
+import FooterNav from "@/app/my-page/components/FooterNav";
 
 export default function Page() {
     const router = useRouter();
@@ -14,7 +15,6 @@ export default function Page() {
                 <Title>커뮤니티</Title>
                 <NotificationButton>알림</NotificationButton>
             </Header>
-
             <Section>
                 <SectionTitle>교육</SectionTitle>
                 <Subsection>
@@ -37,14 +37,7 @@ export default function Page() {
                     </StyledButton>
                 </Subsection>
             </Section>
-
-            <TabBar>
-                <Tab onClick={() => router.push("/home")}>홈</Tab>
-                <Tab $active onClick={() => router.push("/community")}>커뮤니티</Tab>
-                <Tab onClick={() => router.push("/care-journal")}>간병일지</Tab>
-                <Tab onClick={() => router.push("/message")}>쪽지,선물</Tab>
-                <Tab onClick={() => router.push("/my-page")}>마이</Tab>
-            </TabBar>
+            <FooterNav />
         </Container>
     );
 }

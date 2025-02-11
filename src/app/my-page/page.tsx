@@ -81,14 +81,6 @@ const MyPageMain = () => {
                         </StyledButton>
                     </ButtonRow>
                 </Section>
-
-                <TabBar>
-                    <Tab $active onClick={() => router.push("/home")}>홈</Tab>
-                    <Tab onClick={() => router.push("/community")}>커뮤니티</Tab>
-                    <Tab onClick={() => router.push("/care-journal")}>간병일지</Tab>
-                    <Tab onClick={() => router.push("/message")}>쪽지,선물</Tab>
-                    <Tab onClick={() => router.push("/my-page")}>마이</Tab>
-                </TabBar>
             </MainContent>
             <FooterNav />
         </Container>
