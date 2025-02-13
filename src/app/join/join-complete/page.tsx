@@ -4,7 +4,7 @@ import {NextButton} from "@/components/next-button";
 export default function ChoicePage(){
 
     const next = {
-        url: './user-information-input',
+        url: './create-simple-password',
         text: "다음"
     }
 
