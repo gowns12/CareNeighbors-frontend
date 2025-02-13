@@ -23,7 +23,8 @@ export default function Page() {
 
     return <div className="flex flex-col h-full justify-between ">
         <label htmlFor="password" className="flex justify-center text-2xl mt-52 font-semibold">간편 비밀번호 6자리를 설정해주세요 </label>
-        <div className="flex justify-center mt-12">
+        <br/><br/><br/>
+        <div className="flex justify-center mt-12 text-4xl">
             {password.length === 0 && <span className="w-6 h-6 flex items-center justify-center text-xl"></span>}
             {password.split("").map((_, i) => (
                 <Number num={i} key={i} />
@@ -69,9 +70,9 @@ function NumButton(props: {
 
 
     if (props.num === '재배열') {
-         return (
-             <button className="px-6 py-3 text-xl" onClick={props.shuffle}>재배열</button>
-         )
+        return (
+            <button className="px-6 py-3 text-xl" onClick={props.shuffle}>재배열</button>
+        )
     }
     if (props.num === 'Clear') {
         return (

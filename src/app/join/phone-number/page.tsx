@@ -4,6 +4,7 @@ import InputPhoneNumber from "@/app/join/phone-number/inputPhoneNumber";
 import SendVerificationButton from "@/app/join/phone-number/sendVerificationButton";
 import {NextButton} from "@/components/next-button";
 import SelectCarrier from "@/app/join/phone-number/selectCarrier";
+import InputVerification from "@/app/join/phone-number/inputVerification";
 
 export default function ChoicePage(){
     const next = {
@@ -31,7 +32,7 @@ export default function ChoicePage(){
             <SelectCarrier/>
 
             {/* Verification Code Input */}
-            <InputPhoneNumber/>
+            <InputVerification/>
 
             {/* Next Button */}
             <NextButton {...next}/>
