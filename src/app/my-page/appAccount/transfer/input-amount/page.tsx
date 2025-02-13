@@ -10,6 +10,7 @@
         const router = useRouter();
         const searchParams = useSearchParams();
 
+        const userName = '홍길동'; // 로그인된 유저의 이름 (예시)
         const initialBank = searchParams.get('bank') || '케어네이버스 통장';
         const initialAccount = searchParams.get('accountNumber') || '0000-000-000000';
 
@@ -40,7 +41,7 @@
             // }
 
             // 확인 페이지로 이동
-            router.push(`/appAccount/transfer/confirm?fromBank=${initialBank}&fromAccount=${initialAccount}&toBank=국민은행&toAccount=00000000000000&amount=${transferAmount}`);
+            router.push(`/appAccount/transfer/confirm?fromBank=${initialBank}&fromAccount=${initialAccount}&toBank=${initialBank}&toAccount=${initialAccount}&amount=${transferAmount}`);
         };
 
         const renderNumberButtons = () => {
@@ -68,16 +69,13 @@
 
                 <AccountInfo>
                     <AccountSelector>
-                        <AccountLabel>사용자의 통장에서</AccountLabel>
-                        <AccountDetails>
-                            {initialBank} {initialAccount}
-                        </AccountDetails>
+                        <AccountLabel>{userName} 님의 앱통장에서</AccountLabel>
                     </AccountSelector>
 
                     <AccountSelector>
                         <AccountLabel>누구누구의 계좌로</AccountLabel>
                         <AccountDetails>
-                            국민은행 00000000000000
+                            {initialBank} {initialAccount}
                         </AccountDetails>
                     </AccountSelector>
                 </AccountInfo>

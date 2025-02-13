@@ -1,173 +1,218 @@
-// app/appAccount/transfer/confirm/page.tsx
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+     import { useState, useCallback } from 'react';
+     import { useRouter, useSearchParams } from 'next/navigation';
+     import styled from 'styled-components';
 
-const numberFormat = new Intl.NumberFormat('ko-KR');
+     const numberFormat = new Intl.NumberFormat('ko-KR');
 
-export default function TransferConfirmationPage() {
-    const router = useRouter();
-    const searchParams = useSearchParams();
+     export default function InputAmountPage() {
+         const router = useRouter();
+         const searchParams = useSearchParams();
 
-    const [fromBank, setFromBank] = useState('케어네이버스 통장');
-    const [fromAccount, setFromAccount] = useState('0000-000-000000');
-    const [toBank, setToBank] = useState('국민은행');
-    const [toAccount, setToAccount] = useState('00000000000000');
-    const [transferAmount, setTransferAmount] = useState(1400000);
+         const initialBank = searchParams.get('bank') || '케어네이버스 통장';
+         const initialAccount = searchParams.get('accountNumber') || '0000-000-000000';
 
-    useEffect(() => {
-        // URL 파라미터에서 값 가져오기 (초기값 설정)
-        setFromBank(searchParams.get('fromBank') || '케어네이버스 통장');
-        setFromAccount(searchParams.get('fromAccount') || '0000-000-000000');
-        setToBank(searchParams.get('toBank') || '국민은행');
-        setToAccount(searchParams.get('toAccount') || '00000000000000');
-        const amountParam = searchParams.get('amount');
-        setTransferAmount(amountParam ? parseInt(amountParam) : 1400000);
-    }, [searchParams]);
+         const [transferAmount, setTransferAmount] = useState(0);
+         const availableBalance = 7456; // 출금 가능 금액 (고정값)
 
-    const handleTransferConfirmation = () => {
-        // 실제 이체 로직 구현 (API 호출 등)
-        console.log('이체 실행!');
-        // 이체 완료 후 페이지 이동 (예: 완료 페이지)
-        // router.push('/appAccount/transfer/complete');
-    };
+         const handleNumberClick = useCallback((number: string) => {
+             setTransferAmount(prevAmount => {
+                 const newAmount = parseInt(String(prevAmount) + number);
+                 return isNaN(newAmount) ? 0 : newAmount;
+             });
+         }, []);
 
-    return (
-        <Container>
-            <Header>
-                <BackButton onClick={() => router.back()}>뒤로 가기</BackButton>
-                <Title>이체하기</Title>
-            </Header>
+         const handleBackspaceClick = () => {
+             setTransferAmount(prevAmount => {
+                 return Math.floor(prevAmount / 10);
+             });
+         };
 
-            <TransferDetails>
-                <AccountInfo>
-                    <AccountLabel>사용자의 통장에서</AccountLabel>
-                    <AccountValue>
-                        <BankLogo>은행 로고</BankLogo>
-                        {fromBank} {fromAccount}
-                    </AccountValue>
-                </AccountInfo>
-                <AccountInfo>
-                    <AccountLabel>누구누구의 계좌로</AccountLabel>
-                    <AccountValue>
-                        <BankLogo>은행 로고</BankLogo>
-                        {toBank} {toAccount}
-                    </AccountValue>
-                </AccountInfo>
+         const handleAmountPreset = (amount: number) => {
+             setTransferAmount(amount);
+         };
 
-                <Amount>
-                    {numberFormat.format(transferAmount)} 원
-                </Amount>
-                <SubAmount>
-                    {numberFormat.format(transferAmount)} 원
-                </SubAmount>
+         const handleTransfer = () => {
+             if (transferAmount > availableBalance) {
+                 alert("출금 가능 금액을 초과했습니다.");
+                 return;
+             }
 
-                <MemoOptions>
-                    <MemoOption>받는 분 통장표기</MemoOption>
-                    <MemoOption>사용자 이름 ></MemoOption>
-                </MemoOptions>
-                <MemoOptions>
-                    <MemoOption>내 통장표기</MemoOption>
-                    <MemoOption>받는 사용자 이름 ></MemoOption>
-                </MemoOptions>
-            </TransferDetails>
+             // 확인 페이지로 이동
+             router.push(`/appAccount/transfer/confirm?fromBank=${initialBank}&fromAccount=${initialAccount}&toBank=국민은행&toAccount=00000000000000&amount=${transferAmount}`);
+         };
 
-            <NextButton onClick={handleTransferConfirmation}>다음</NextButton>
-        </Container>
-    );
-}
+         const renderNumberButtons = () => {
+             const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '00', '0', 'backspace'];
 
-const Container = styled.div`
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-`;
+             return numbers.map((number, index) => (
+                 <NumberButton key={index} onClick={() => {
+                     if (number === 'backspace') {
+                         handleBackspaceClick();
+                     } else {
+                         handleNumberClick(number);
+                     }
+                 }}>
+                     {number === 'backspace' ? '←' : number}
+                 </NumberButton>
+             ));
+         };
 
-const Header = styled.header`
-    display: flex;
-    align-items: center;
-    padding: 10px 0;
-    margin-bottom: 20px;
-`;
+         return (
+             <Container>
+                 <Header>
+                     <BackButton onClick={() => router.back()}>뒤로 가기</BackButton>
+                     <Title>이체하기</Title>
+                 </Header>
 
-const BackButton = styled.button`
-    border: none;
-    background: none;
-    padding: 8px;
-    font-size: 16px;
-    cursor: pointer;
-`;
+                 <AccountInfo>
+                     <AccountSelector>
+                         <AccountLabel>사용자의 통장에서</AccountLabel>
+                         <AccountDetails>
+                             {initialBank} {initialAccount}
+                         </AccountDetails>
+                     </AccountSelector>
 
-const Title = styled.h1`
-    font-size: 18px;
-    margin: 0 auto;
-    text-align: center;
-`;
+                     <AccountSelector>
+                         <AccountLabel>누구누구의 계좌로</AccountLabel>
+                         <AccountDetails>
+                             국민은행 00000000000000
+                         </AccountDetails>
+                     </AccountSelector>
+                 </AccountInfo>
 
-const TransferDetails = styled.div`
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-`;
+                 <AmountSection>
+                     <AmountQuestion>얼마를 이체하시겠어요?</AmountQuestion>
+                     <AvailableBalance>출금가능금액 {numberFormat.format(availableBalance)} 원</AvailableBalance>
+                     <AmountDisplay>{numberFormat.format(transferAmount)} 원</AmountDisplay>
+                 </AmountSection>
 
-const AccountInfo = styled.div`
-    margin-bottom: 10px;
-`;
+                 <PresetAmounts>
+                     <PresetButton onClick={() => handleAmountPreset(10000)}>+1만</PresetButton>
+                     <PresetButton onClick={() => handleAmountPreset(50000)}>+5만</PresetButton>
+                     <PresetButton onClick={() => handleAmountPreset(100000)}>+10만</PresetButton>
+                     <PresetButton onClick={() => handleAmountPreset(availableBalance)}>전액</PresetButton>
+                 </PresetAmounts>
 
-const AccountLabel = styled.div`
-    font-size: 14px;
-    color: #666;
-`;
+                 <NumberPad>
+                     {renderNumberButtons()}
+                 </NumberPad>
 
-const AccountValue = styled.div`
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-`;
+                 <ConfirmButton onClick={handleTransfer}>확인</ConfirmButton>
+             </Container>
+         );
+     }
 
-const BankLogo = styled.div`
-    width: 20px;
-    height: 20px;
-    border: 1px solid #ddd;
-    margin-right: 5px;
-`;
+     const Container = styled.div`
+         max-width: 500px;
+         margin: 0 auto;
+         padding: 20px;
+         background-color: #ffffff;
+         min-height: 100vh;
+         display: flex;
+         flex-direction: column;
+     `;
 
-const Amount = styled.div`
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 20px;
-`;
+     const Header = styled.header`
+         display: flex;
+         align-items: center;
+         padding: 10px 0;
+         margin-bottom: 20px;
+     `;
 
-const SubAmount = styled.div`
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px;
-`;
+     const BackButton = styled.button`
+         border: none;
+         background: none;
+         padding: 8px;
+         font-size: 16px;
+         cursor: pointer;
+     `;
 
-const MemoOptions = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-`;
+     const Title = styled.h1`
+         font-size: 18px;
+         margin: 0 auto;
+         text-align: center;
+     `;
 
-const MemoOption = styled.div`
-    font-size: 14px;
-`;
+     const AccountInfo = styled.div`
+         margin-bottom: 20px;
+     `;
 
-const NextButton = styled.button`
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-`;
+     const AccountSelector = styled.div`
+         margin-bottom: 10px;
+     `;
+
+     const AccountLabel = styled.div`
+         font-size: 14px;
+         color: #666;
+     `;
+
+     const AccountDetails = styled.div`
+         font-size: 16px;
+     `;
+
+     const AmountSection = styled.div`
+         margin-bottom: 20px;
+     `;
+
+     const AmountQuestion = styled.div`
+         font-size: 16px;
+         margin-bottom: 5px;
+     `;
+
+     const AvailableBalance = styled.div`
+         font-size: 14px;
+         color: #666;
+         margin-bottom: 10px;
+     `;
+
+     const AmountDisplay = styled.div`
+         font-size: 24px;
+         font-weight: bold;
+         text-align: right;
+         padding: 10px;
+         border: 1px solid #ddd;
+         border-radius: 4px;
+     `;
+
+     const PresetAmounts = styled.div`
+         display: flex;
+         justify-content: space-between;
+         margin-bottom: 20px;
+     `;
+
+     const PresetButton = styled.button`
+         padding: 10px 15px;
+         border: 1px solid #ddd;
+         border-radius: 4px;
+         background: white;
+         cursor: pointer;
+     `;
+
+     const NumberPad = styled.div`
+         display: grid;
+         grid-template-columns: repeat(3, 1fr);
+         gap: 8px;
+         margin-bottom: 20px;
+     `;
+
+     const NumberButton = styled.button`
+         padding: 15px;
+         border: 1px solid #ddd;
+         border-radius: 4px;
+         background: white;
+         cursor: pointer;
+         font-size: 18px;
+         text-align: center;
+     `;
+
+     const ConfirmButton = styled.button`
+         width: 100%;
+         padding: 12px;
+         border: 1px solid #ddd;
+         border-radius: 4px;
+         background: white;
+         cursor: pointer;
+         font-size: 16px;
+     `;
