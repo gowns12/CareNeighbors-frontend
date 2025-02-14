@@ -1,4 +1,3 @@
-// app/appAccount/page.tsx
 'use client';
 
 import { useRouter } from 'next/navigation';
@@ -6,6 +5,19 @@ import styled from 'styled-components';
 
 export default function AppAccountPage() {
     const router = useRouter();
+
+    const transactions = [
+        { id: "1", date: "01. 31", merchant: "케어네이버스", amount: -7456, balance: 7456 },
+        { id: "2", date: "01. 30", merchant: "케어네이버스", amount: -10000, balance: 14912 },
+        { id: "3", date: "12. 25", merchant: "케어네이버스", amount: 10000, balance: 24912 },
+        { id: "4", date: "12. 24", merchant: "케어네이버스", amount: -100000, balance: 14912 },
+        { id: "5", date: "12. 20", merchant: "케어네이버스", amount: 100000, balance: 114912 },
+        { id: "6", date: "12. 19", merchant: "케어네이버스", amount: -1000000, balance: 14912 },
+        { id: "7", date: "12. 15", merchant: "케어네이버스", amount: 1000000, balance: 1014912 },
+        { id: "8", date: "12. 20", merchant: "케어네이버스", amount: -500000, balance: 0 },
+    ];
+
+    const recentTransactions = transactions.slice(0, 5);
 
     return (
         <Container>
@@ -21,16 +33,25 @@ export default function AppAccountPage() {
                     <AccountLabel>사용자의 통장</AccountLabel>
                     <AccountBalance>7,456원</AccountBalance>
                 </AccountInfo>
-                <TransferButton>이체</TransferButton>
+                <TransferButton onClick={() => router.push("/my-page/appAccount/transfer/select-institution")}>이체</TransferButton>
             </AccountBox>
+
             <ActionButtons>
                 <ActionButton onClick={() => router.push("/my-page/appAccount/transaction-history")}>
                     입/출금 내역
                 </ActionButton>
-                <ActionButton>
-                    이체하기
-                </ActionButton>
             </ActionButtons>
+
+            <RecentTransactionsSection>
+                <SectionTitle>직전 거래내역</SectionTitle>
+                <TransactionHistory>
+                    {recentTransactions.map((tx) => (
+                        <TransactionItem key={tx.id}>
+                            {tx.date}  {tx.merchant}  {tx.amount > 0 ? '입금' : '출금'} {Math.abs(tx.amount).toLocaleString()}원
+                        </TransactionItem>
+                    ))}
+                </TransactionHistory>
+            </RecentTransactionsSection>
         </Container>
     );
 }
@@ -104,7 +125,7 @@ const TransferButton = styled.button`
 const ActionButtons = styled.div`
     display: flex;
     gap: 12px; // 버튼 사이 간격
-    margin-top: 20px;
+    margin-bottom: 20px;
 `;
 
 const ActionButton = styled.button`
@@ -125,7 +146,29 @@ const ActionButton = styled.button`
     &:active {
         background-color: #eeeeee;
     }
+`;
 
-    &:active {
-        background-color: #eeeeee;
-    }`;
+const RecentTransactionsSection = styled.section`
+    margin-top: 20px;
+`;
+
+const SectionTitle = styled.h2`
+    font-size: 16px;
+    margin-bottom: 10px;
+`;
+
+const TransactionHistory = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 8px; // 내역 사이 간격
+    margin-bottom: 20px;
+`;
+
+const TransactionItem = styled.div`
+    padding: 8px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background: #f9f9f9;
+    font-size: 14px;
+    color: #333;
+`;

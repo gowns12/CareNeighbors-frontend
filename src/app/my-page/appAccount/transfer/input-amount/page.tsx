@@ -86,9 +86,9 @@ export default function InputAmountPage() {
                 </AccountSelector>
 
                 <AccountSelector>
-                    <AccountLabel>누구누구의 계좌로</AccountLabel>
+                    <AccountLabel>누구누구의 계좌</AccountLabel>
                     <AccountDetails>
-                        {initialBank} {initialAccount}
+                        {initialBank} {initialAccount} {"로"}
                     </AccountDetails>
                 </AccountSelector>
             </AccountInfo>
